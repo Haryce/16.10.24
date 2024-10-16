@@ -3,25 +3,29 @@
 using namespace std;
 int main() {
     setlocale(LC_ALL, "Russian");
-    const int numProducts = 4;
-    string products[numProducts] = { "Елка", "Мешура", "елочные игрушки", "Гирлянда" };
-    double prices[numProducts] = { 2500.0, 120.0, 600.0, 990.0 };
-    int stock[numProducts] = { 24, 120, 52, 41 }; // Количество товара в магазине
+    const int num = 4;
+    string products[num] = { "Елка", "Мешура", "елочные игрушки", "Гирлянда" };
+    double prices[num] = { 2500.0, 240.0, 700.0, 1500.0 };
+    int stock[num] = { 54, 220, 152, 87 }; // Количество товара в магазине
     double income = 0.0;
-    double discount = 0.25; // 25% скидка
+    double dis = 0.25; // 25% скидка
     char proceed = 'y';
+
     while (proceed == 'y' || proceed == 'Y') {
         double totalSum = 0.0;
-        for (int i = 0; i < numProducts; ++i) {
+
+        // Вывод списка товаров
+        for (int i = 0; i < num; ++i) {
             cout << i + 1 << ". " << products[i] << " - " << prices[i] << " руб (в наличии " << stock[i] << ")" << endl;
         }
+
         while (true) {
             int choice, quantity;
-            cout << "Выберите товар (1-" << numProducts << ") или введите 0 для завершения покупки: ";
+            cout << "Выберите товар (1-" << num << ") или введите 0 для завершения покупки: ";
             cin >> choice;
 
             if (choice == 0) break;
-            if (choice < 1 || choice > numProducts) {
+            if (choice < 1 || choice > num) {
                 cout << "Неверный ввод, попробуйте снова." << endl;
                 continue;
             }
@@ -36,17 +40,22 @@ int main() {
             totalSum += prices[choice - 1] * quantity;
             stock[choice - 1] -= quantity;
         }
-        if (totalSum > 100.0) {
-            totalSum *= (1 - discount); // Применяем скидку
-            cout << "Применена скидка 10%." << endl;
+        //наличие скидки
+        char discount;
+        cout << "У вас есть скидка? (y/n): ";
+        cin >> discount;
+        if (discount == 'y' || discount == 'Y') {
+            totalSum *= (1 - dis); // Применяем скидку
+            cout << "Применена скидка 25%." << endl;
         }
+
         cout << "Итоговая сумма покупки: " << totalSum << " руб." << endl;
+
         income += totalSum;
 
         cout << "Обслужить следующего клиента? (y/n): ";
         cin >> proceed;
     }
     cout << "Общая выручка магазина: " << income << " руб." << endl;
-
     return 0;
 }
