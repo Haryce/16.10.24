@@ -42,7 +42,7 @@ int main() {
         }
         //наличие скидки
         char discount;
-        cout << "У вас есть скидка? (y/n): ";
+        cout << "У вас есть скидочная карта? (y/n): ";
         cin >> discount;
         if (discount == 'y' || discount == 'Y') {
             totalSum *= (1 - dis); // Применяем скидку
