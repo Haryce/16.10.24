@@ -5,7 +5,7 @@ int main() {
     setlocale(LC_ALL, "Russian");
     const int num = 4;
     string products[num] = { "Елка", "Мешура", "елочные игрушки", "Гирлянда" };
-    double prices[num] = { 2500.0, 240.0, 700.0, 1500.0 };
+    double price[num] = { 2500.0, 240.0, 700.0, 1500.0 };
     int stock[num] = { 54, 220, 152, 87 }; // Количество товара в магазине
     double income = 0.0;
     double dis = 0.25; // 25% скидка
@@ -16,9 +16,8 @@ int main() {
 
         // Вывод списка товаров
         for (int i = 0; i < num; ++i) {
-            cout << i + 1 << ". " << products[i] << " - " << prices[i] << " руб (в наличии " << stock[i] << ")" << endl;
+            cout << i + 1 << ". " << products[i] << " - " << price[i] << " руб (в наличии " << stock[i] << ")" << endl;
         }
-
         while (true) {
             int choice, quantity;
             cout << "Выберите товар (1-" << num << ") или введите 0 для завершения покупки: ";
@@ -37,7 +36,7 @@ int main() {
                 continue;
             }
 
-            totalSum += prices[choice - 1] * quantity;
+            totalSum += price[choice - 1] * quantity;
             stock[choice - 1] -= quantity;
         }
         //наличие скидки
